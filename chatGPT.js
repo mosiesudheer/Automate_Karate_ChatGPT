@@ -27,7 +27,8 @@ function chSend() {
   oHttp.open("POST", "https://api.openai.com/v1/completions");
   oHttp.setRequestHeader("Accept", "application/json");
   oHttp.setRequestHeader("Content-Type", "application/json");
-  oHttp.setRequestHeader("Authorization", "Bearer " + "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");
+  // oHttp.setRequestHeader("OpenAI-Organization","org-MnDXT8akexdY1wooQKSoZmHH")
+  oHttp.setRequestHeader("Authorization", "Bearer " + "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");
 
   oHttp.onreadystatechange = function () {
     if (oHttp.readyState === 4) {
@@ -61,7 +62,6 @@ function chSend() {
         // TextToSpeech(s);
       }      
     }
-//     setTimeout(function() { your_func(); }, 1000);
   };
 
   var sModel = "text-davinci-003";
