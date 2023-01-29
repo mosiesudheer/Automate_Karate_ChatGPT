@@ -61,7 +61,7 @@ function chSend() {
         // TextToSpeech(s);
       }      
     }
-    setTimeout(function() { your_func(); }, 1000);
+//     setTimeout(function() { your_func(); }, 1000);
   };
 
   var sModel = "text-davinci-003";
