@@ -27,7 +27,7 @@ function chSend() {
   oHttp.open("POST", "https://api.openai.com/v1/completions");
   oHttp.setRequestHeader("Accept", "application/json");
   oHttp.setRequestHeader("Content-Type", "application/json");
-  oHttp.setRequestHeader("Authorization", "Bearer " + "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");
+  oHttp.setRequestHeader("Authorization", "Bearer " + "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");
 
   oHttp.onreadystatechange = function () {
     if (oHttp.readyState === 4) {
