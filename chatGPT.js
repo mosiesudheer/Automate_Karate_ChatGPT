@@ -13,6 +13,7 @@ function getValues(){
 function chSend() {
 
 	document.getElementById("code").value = "Generating script";
+	var apiKey = document.getElementById("apiKey").value;
 
 	var promptMsg = "API Name : Nationalize \nEndpoint : https://api.nationalize.io/?name=nathaniel\nResponse : \n{\"country\":[{\"country_id\":\"GH\",\"probability\":0.224},{\"country_id\":\"PH\",\"probability\":0.084},{\"country_id\":\"NG\",\"probability\":0.073},{\"country_id\":\"US\",\"probability\":0.061},{\"country_id\":\"NE\",\"probability\":0.034}],\"name\":\"nathaniel\"}\n\nQ : Generate Karate automation script \nA : \nFeature: Nationalize\n\n  Scenario: Verify success status code of Nationalize\n    Given url 'https://api.nationalize.io/?name=nathaniel'\n    When method get\n    Then status 200\n\n  Scenario: Verify success response values of Nationalize\n    Given url 'https://api.nationalize.io/?name=nathaniel'\n    When method get\n    Then status 200\n    Then match response.['name'] contains 'nathaniel'\n\n  Scenario: Verify response format\n    Given url 'https://api.nationalize.io/?name=nathaniel'\n    When method get\n    Then status 200\n    And match response == { \"name\":'#string', \"country\": '#[]'}\n\n0816981\n\n"
 	promptMsg = promptMsg + "API Name : " + document.getElementById("apiName").value + "\n";
@@ -28,7 +29,7 @@ function chSend() {
   oHttp.setRequestHeader("Accept", "application/json");
   oHttp.setRequestHeader("Content-Type", "application/json");
   // oHttp.setRequestHeader("OpenAI-Organization","org-MnDXT8akexdY1wooQKSoZmHH")
-  oHttp.setRequestHeader("Authorization", "Bearer " + "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");
+  oHttp.setRequestHeader("Authorization", "Bearer " + apiKey);
 
   oHttp.onreadystatechange = function () {
     if (oHttp.readyState === 4) {
@@ -64,7 +65,7 @@ function chSend() {
     }
   };
 
-  var sModel = "text-davinci-003";
+  var sModel = "code-davinci-002";
   var iMaxTokens = 2048;
   var sUserId = "1";
   var dTemperature = 0.5;  
