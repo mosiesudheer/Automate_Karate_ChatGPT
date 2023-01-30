@@ -22,33 +22,33 @@ function chSend() {
 	promptMsg = promptMsg + "Q : Generate Karate automation script \nA : \n";
 	// alert(promptMsg)
 
-  var sQuestion = promptMsg;
+	var sQuestion = promptMsg;
 
-  var oHttp = new XMLHttpRequest();
-  oHttp.open("POST", "https://api.openai.com/v1/completions");
-  oHttp.setRequestHeader("Accept", "application/json");
-  oHttp.setRequestHeader("Content-Type", "application/json");
+	var oHttp = new XMLHttpRequest();
+	oHttp.open("POST", "https://api.openai.com/v1/completions");
+	oHttp.setRequestHeader("Accept", "application/json");
+	oHttp.setRequestHeader("Content-Type", "application/json");
   // oHttp.setRequestHeader("OpenAI-Organization","org-MnDXT8akexdY1wooQKSoZmHH")
-  oHttp.setRequestHeader("Authorization", "Bearer " + apiKey);
+	oHttp.setRequestHeader("Authorization", "Bearer " + apiKey);
 
-  oHttp.onreadystatechange = function () {
-    if (oHttp.readyState === 4) {
+	oHttp.onreadystatechange = function () {
+		if (oHttp.readyState === 4) {
       //console.log(oHttp.status);
-      var oJson = {}
+			var oJson = {}
       // if (txtOutput.value != "") txtOutput.value += "\n";
 
-      var txtOutput="";
+			var txtOutput="";
 
-      try {
-        oJson = JSON.parse(oHttp.responseText);
-      } catch (ex) {
-        txtOutput += "Error: " + ex.message
-      }
+			try {
+				oJson = JSON.parse(oHttp.responseText);
+			} catch (ex) {
+				txtOutput += "Error: " + ex.message
+			}
 
-      if (oJson.error && oJson.error.message) {
-        txtOutput += "Error: " + oJson.error.message;
-      } else if (oJson.choices && oJson.choices[0].text) {
-        var s = oJson.choices[0].text;
+			if (oJson.error && oJson.error.message) {
+				txtOutput += "Error: " + oJson.error.message;
+			} else if (oJson.choices && oJson.choices[0].text) {
+				var s = oJson.choices[0].text;
 
         // if (selLang.value != "en-US") {
         //   var a = s.split("?\n");
@@ -57,25 +57,25 @@ function chSend() {
         //   }
         // }
 
-        if (s == "") s = "No response";
-        txtOutput += "" + s;
-        document.getElementById("code").value = txtOutput;
+				if (s == "") s = "No response";
+				txtOutput += "" + s;
+				document.getElementById("code").value = txtOutput;
         // TextToSpeech(s);
-      }      
-    }
-  };
+			}      
+		}
+	};
 
-  var sModel = "code-davinci-002";
-  var iMaxTokens = 2048;
-  var sUserId = "1";
-  var dTemperature = 0.5;  
+	var sModel = "text-davinci-002";
+	var iMaxTokens = 2048;
+	var sUserId = "1";
+	var dTemperature = 0.5;  
 
-  var data = {
-    model: sModel,
-    prompt: sQuestion,
-    max_tokens: iMaxTokens,
-    user: sUserId,
-    temperature: dTemperature,
+	var data = {
+		model: sModel,
+		prompt: sQuestion,
+		max_tokens: iMaxTokens,
+		user: sUserId,
+		temperature: dTemperature,
     frequency_penalty: 0.0, //Number between -2.0 and 2.0 
                                //Positive values decrease the model's likelihood 
                                //to repeat the same line verbatim.
@@ -85,12 +85,27 @@ function chSend() {
     stop: ["0816981"]        //Up to 4 sequences where the API will stop 
                                //generating further tokens. The returned text 
                                //will not contain the stop sequence.
-  }
+}
 
-  oHttp.send(JSON.stringify(data));
+oHttp.send(JSON.stringify(data));
 
 
   // if (txtOutput.value != "") txtOutput.value += "\n";
   // txtOutput.value += "Me: " + sQuestion;
   // txtMsg.value = "";
+}
+
+function writeToFile() {
+
+	var data = document.getElementById("code").value;
+	var fileName = 	document.getElementById("apiName").value;
+	fileName=fileName.replace(/\s/g, '');
+
+	const blob = new Blob([data], { type: 'text/plain' });
+	const url = URL.createObjectURL(blob);
+	const link = document.createElement('a');
+	link.href = url;
+	link.download = fileName + ".feature";
+	link.click();
+	URL.revokeObjectURL(url);
 }
