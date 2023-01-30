@@ -1,12 +1,12 @@
 /* Center align the form */
-    form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    /* Style the textboxes and textarea */
-    input[type="text"], textarea {
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/* Style the textboxes and textarea */
+input[type="text"], textarea {
       /*width: 300px;
       height: 30px;*/
       padding: 10px;
@@ -23,4 +23,13 @@
       color: white;
       border: none;
       border-radius: 5px;
+    }
+    table {
+      width: 90%;
+    }
+    .twenty {
+      width: 10%;
+    }
+    .fourty {
+      width: 40%;
     }
