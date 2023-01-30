@@ -9,21 +9,25 @@
   <form>
     <table>
       <tr>
-        <td><label for="text1">API Name</label></td>
-        <td><input type="text" size=50 id="apiName" name="text1" value="Zip Code"></td>
-        <td align="center"><label for="text1">Script</label></td>
+        <td class=twenty><label for="text1">API Key</label></td>
+        <td class=fourty><input type="text" id="apiKey" name="text1" value=""></td>
       </tr>
       <tr>
-        <td><label for="text2">End Point</label></td>
-        <td><input type="text" size=50 id="endPoint" name="text2" value="https://api.zippopotam.us/us/33162"></td>
-        <td rowspan="2"><textarea rows="15" cols="50" id="code" name="textarea"></textarea></td>
+        <td class=twenty><label for="text1">API Name</label></td>
+        <td class=fourty><input type="text" id="apiName" name="text1" value=""></td>
+        <td class=fourty align="center"><label for="text1">Script</label></td>
       </tr>
       <tr>
-        <td><label for="textarea">Response</label></td>
-        <td><textarea rows="12" cols="50" id="response" name="textarea" rows="10"></textarea></td>
+        <td class=twenty><label for="text2">End Point</label></td>
+        <td class=fourty><input type="text" id="endPoint" name="text2" value=""></td>
+        <td class=fourty rowspan="2"><textarea rows="15" cols=40% id="code" name="textarea"></textarea></td>
       </tr>
       <tr>
-        <td><button type="button" onclick="chSend()">Click Me</button>  </td>
+        <td class=twenty><label for="textarea">Response</label></td>
+        <td class=fourty><textarea rows="12" cols=40% id="response" name="textarea" rows="10"></textarea></td>
+      </tr>
+      <tr>
+        <td class=twenty><button type="button" onclick="chSend()">Click Me</button>  </td>
       </tr>
     </table>
 
